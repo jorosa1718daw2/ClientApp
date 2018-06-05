@@ -1,0 +1,33 @@
+
+<mat-sidenav-container class="sidenav-container" style="min-height: 100%;">
+  <mat-sidenav  #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-nav-list fxLayout="column">
+      <a mat-list-item [routerLink]='["/fetch-data"]'>Visualización</a>
+      <a mat-list-item [routerLink]='["/focus"]'>Focos</a>
+      <a mat-list-item [routerLink]='["/cf"]'>Función de Calibración</a>
+      <a mat-list-item [routerLink]='["/historical"]'>Históricos</a>
+    </mat-nav-list>
+  </mat-sidenav>
+   <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Application Title</span>
+    </mat-toolbar>
+  </mat-sidenav-content>
+
+<!--  <mat-toolbar color="primary">
+    <span>SMEC</span>
+    <span class="spacer"></span>
+
+  </mat-toolbar>-->
+</mat-sidenav-container>
+

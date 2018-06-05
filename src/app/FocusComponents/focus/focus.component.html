@@ -1,0 +1,51 @@
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <!--
+          <mat-card-title>Basic menu</mat-card-title>
+          <mat-card-subtitle><code>&lt;mat-menu&gt;</code> is a floating panel containing list of options.</mat-card-subtitle>
+        -->
+        <table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Descipción</th>
+            <td mat-cell *matCellDef="let row">{{row.description}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="analyzers">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Analizador</th>
+            <td mat-cell *matCellDef="let row">{{row.analyzers[0].manufacturer}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button color="primary" (click)="nuevoFoco()">
+                <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+              </button>
+
+              <button mat-icon-button color="primary" (click)="refrescar()">
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </mat-header-cell>
+
+            <mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="primary" (click)="editarFoco(i,row.focusId,row.name,row.description)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    <div>
+ </div>

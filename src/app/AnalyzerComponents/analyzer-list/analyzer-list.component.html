@@ -1,0 +1,39 @@
+
+
+
+    <p *ngIf="!focuses">
+        <em>Cargando...</em>
+    </p>
+    <table class='table' *ngIf="focuses">
+        <thead>
+            <tr>
+                <th>Analyzer ID</th>
+                <th>manufacturer</th>
+                <th>foco ID</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let analyzer of focuses.analyzers">
+                  <td>{{ analyzer.analyzerId }}</td>
+                  <td>{{ analyzer.manufacturer }}</td>
+                  <td>{{ analyzer.focusId }}</td>
+                  <td> <button [routerLink]="['/analyzerEdit/', analyzer.analyzerId]" type="button" class="btn btn-warning"> Editar</button>  </td>
+            </tr>
+        </tbody>
+    </table>
+    <mat-action-row>
+            <button mat-button color="primary" (click)="openDialog()">Añadir</button>
+   </mat-action-row>    
+
+ 
+ 
+ 
+
+    
+
+
+
+
+

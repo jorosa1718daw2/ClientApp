@@ -1,0 +1,91 @@
+<!--<div class="container">
+  <h3 mat-dialog-title>Añadir foco de emisiones</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="name"  name="name" required>
+        <mat-error *ngIf="formControl.invalid">{{Error()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Descripción" [(ngModel)]="description" name="description" required>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="guardarFoco()">Guardar</button>
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+    </div>
+  </form>
+</div>-->
+
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Añadir Foco</ng-template>
+      <!--1er form  añadir un foco-->
+      <!--Nombre-->
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Nombre del foco" [(ngModel)]="name" name="name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <br>
+      <!--Descripción-->
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Descripción" [(ngModel)]="description" name="description" formControlName="firstCtrl"
+          required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Siguiente</button>
+        <ng-container *ngIf="!isFocusSaved">
+        <button mat-button (click)="saveFocus()">Guardar Foco</button>
+      </ng-container>
+      </div>
+    </form>
+  </mat-step>
+  <!--Fin 1er form-->
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <!--2 form añadir un analizador -->
+      <ng-template matStepLabel>Añadir Analizador</ng-template>
+      <!--fabricante-->
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Nombre fabricante" [(ngModel)]="manufacturer" name="manufacturer" formControlName="secondCtrl"
+          required>
+      </mat-form-field>
+      <br>
+            <!--Modelo-->
+
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Modelo" [(ngModel)]="model" name="model" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <br>
+            <!--Número serie-->
+
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Número de serie" [(ngModel)]="serialNumber" name="serialNumber" formControlName="secondCtrl"
+          required>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+        <ng-container *ngIf="!isAnalyzerSaved">
+          <button mat-button (click)="saveAnalyzer()">Guardar analizador</button>
+        </ng-container>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Guardar</ng-template>
+    Guardar para finalizar.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button [mat-dialog-close]="1" (click)="ok()">Ok</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
